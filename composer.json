@@ -1,0 +1,9 @@
+{
+    "name": "yeaminrabbi/testcomposer",
+    "description": "Testing the composer properties",
+    "require": {
+        "phpunit/php-timer": "^5.0",
+        "masterminds/html5": "^2.7"
+        
+    }
+}
