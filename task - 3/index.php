@@ -106,7 +106,16 @@ class Ticket implements VerifiedVisa,VerifiedPassport{
         $this->visaStatus = 1;
       }
    }
-
+   function get_onBoard()
+   {
+      if($this->passportStatus == 1 && $this->visaStatus ==1)
+      {
+       echo 'Have you Boarding pass collected from counter! Welcome to XYZ Airlines';
+      }
+      else {
+        echo 'Please verify your passport and visa both';
+      }
+   }
 }
 
 
@@ -116,17 +125,15 @@ echo '<pre>';
 print_r($MyTicket);
 echo '</pre>';
 
+echo $MyTicket-> get_onBoard();
+
 $MyTicket->V_passport(12312312);
-echo '<pre>';
-print_r($MyTicket);
-echo '</pre>';
-
-
 $MyTicket->V_visa(12312);
 echo '<pre>';
 print_r($MyTicket);
 echo '</pre>';
 
+echo $MyTicket-> get_onBoard();
 
 
 ?>
