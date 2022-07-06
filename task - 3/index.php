@@ -1,4 +1,4 @@
-<?php 
+.<?php 
 
 class Bank
 {
@@ -45,11 +45,6 @@ class BackAccount extends Bank{
 
 }
 
-interface AccountPermission {
-    public function getAccountPermission();
-  }
-
-
 //creating a bankAccount Object
 $accountRabbi = new BackAccount("122422551231665","SAVINGS","Uttara Bank", "Private");
 
@@ -69,40 +64,69 @@ echo '</pre>';
 
 
 
+interface VerifiedVisa{
+  public function V_visa($id);
+}
+
+interface VerifiedPassport{
+  public function V_passport($id);
+}
+
+class Ticket implements VerifiedVisa,VerifiedPassport{
+   public $name;
+   public $email;
+   public $phone;
+   public $gender;
+   public $age;
+
+   public $passportStatus = 0;
+   public $visaStatus = 0;
+
+   function __construct($name,$email,$age,$phone,$gender)
+   {
+      $this->name = $name;
+      $this->email = $email;
+      $this->age = $age;
+      $this->phone = $phone;
+      $this->gender = $gender;
+   }
+
+   function V_passport($id)
+   {
+      if(isset($id))
+      {
+        $this->passportStatus = 1;
+      }
+   }
+
+   function V_visa($id)
+   {
+      if(isset($id))
+      {
+        $this->visaStatus = 1;
+      }
+   }
+
+}
 
 
-interface Animal {
-    public function makeSound();
-  }
-  
-  // Class definitions
-  class Cat implements Animal {
-    public function makeSound() {
-      echo " Meow ";
-    }
-  }
-  
-  class Dog implements Animal {
-    public function makeSound() {
-      echo " Bark ";
-    }
-  }
-  
-  class Mouse implements Animal {
-    public function makeSound() {
-      echo " Squeak ";
-    }
-  }
-  
-  // Create a list of animals
-  $cat = new Cat();
-  $dog = new Dog();
-  $mouse = new Mouse();
-  $animals = array($cat, $dog, $mouse);
-  
-  // Tell the animals to make a sound
-  foreach($animals as $animal) {
-    $animal->makeSound();
-  }
+$MyTicket = new Ticket("JellyFish","jelly@gmail.com", "28", "01768002727", "MALE");
+
+echo '<pre>';
+print_r($MyTicket);
+echo '</pre>';
+
+$MyTicket->V_passport(12312312);
+echo '<pre>';
+print_r($MyTicket);
+echo '</pre>';
+
+
+$MyTicket->V_visa(12312);
+echo '<pre>';
+print_r($MyTicket);
+echo '</pre>';
+
+
 
 ?>
