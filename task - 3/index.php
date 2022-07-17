@@ -52,12 +52,6 @@ $accountRabbi = new BackAccount("122422551231665","SAVINGS","Uttara Bank", "Priv
 $accountRabbi->set_accountHolder("Rabbi", "yeamin@gmail.com", "0176800272","AT4578","50000");
 
 
-
-// print_r($accountRabbi->accountHolderName);
-// print_r($accountRabbi->accountHolderEmail);
-// print_r($accountRabbi->accountHolderPhone);
-// print_r($accountRabbi->get_pin());
-
 echo '<pre>';
 print_r($accountRabbi);
 echo '</pre>';
