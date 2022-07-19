@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Schedule;
 use Illuminate\Database\Seeder;
-use App\Models\Contents;
 
-class ContentSeeder extends Seeder
+class ScheduleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class ContentSeeder extends Seeder
      */
     public function run()
     {
-        Contents::factory()->count(10)->create();
+        Schedule::factory()->count(10)->create();
     }
 }
