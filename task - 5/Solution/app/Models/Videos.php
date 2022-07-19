@@ -15,3 +15,4 @@ class Videos extends Model
         return $this->morphMany(Contents::class, 'contentable');
     }
 }
+

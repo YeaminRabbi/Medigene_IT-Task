@@ -43,4 +43,22 @@ class ApiController extends Controller
             'data' => Exams::all() 
         ]);
    }
+
+   function getContent()
+   {
+
+     // $video = new Videos();
+     // $video->source = 'asdfasdfasdfasdf';
+     // $video->save();
+
+     // $video->content()->create();
+
+     // return response([
+     //      "msg" => "Success!"
+     // ]);
+
+     return response([
+          'data' => Contents::get()
+     ]);
+   }
 }
