@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Content;
-use App\Models\Courses;
+use App\Models\Course;
 use App\Models\Exam;
 use App\Models\Paragraph;
 use App\Models\Video;
 use App\Models\User;
+use App\Models\Schedule;
 
 use App\Models\Comment;
 use App\Models\Post;
@@ -100,18 +101,25 @@ class ApiController extends Controller
      //      'body' => '3 This comment is for review' 
      // ]);
 
+
      $faker = Faker::create();
      for($i=1;$i<50;$i++)
      {
-          $CreatedObj = new Exam();
-          $CreatedObj->type = $faker->randomElement(['MCQ', 'Written', 'Viva']);
-          $CreatedObj->title = Str::ra;
-          $CreatedObj->save();
+          // $CreatedObj = new Exam();
+          // $CreatedObj->type = $faker->randomElement(['MCQ', 'Written', 'Viva']);
+          // $CreatedObj->title = Str::ra;
+          // $CreatedObj->save();
           
-          $CreatedObj->contents()->create([
-               'body' => 'Paragraph' 
-          ]);
+          // $CreatedObj->contents()->create([
+          //      'body' => 'Paragraph' 
+          // ]);
 
+          $schedule = new Schedule();
+          $schedule->content_id = Content::all()->random()->id;
+          $schedule->course_id = Course::all()->random()->id;
+          $schedule->datetime = $faker->dateTimeBetween('now', '+30 days');
+          $schedule->save();
+        
      }
      
 
@@ -122,6 +130,44 @@ class ApiController extends Controller
 
 
    }
+
+   function course_list()
+   {
+    
+     return response([
+          'course_list' => Course::all()
+     ]);
+
+   }
+
+   function schedule_list()
+   {
+     $schedule = Schedule::all();
+     $collection = [];
+     foreach($schedule as $item)
+     {    
+          $data= [
+               "datetime" => $item->datetime,
+               "course"=>$item->get_course($item->course_id) , 
+               "content"=> $item->get_content($item->content_id)
+          ];
+
+          array_push($collection, $data);
+        
+     }
+     return response([
+         "data" => $collection
+     ]);
+
+   }
+
+   function exam_list()
+   {
+      return response([
+          'data'=> Exam::all()
+      ]);
+   }
+
 }
 
 

@@ -30,3 +30,8 @@ Route::get('/content', [ApiController::class, 'getContent'])->name('content');
 
 Route::get('/test', [ApiController::class, 'test'])->name('test');
 Route::get('/cc', [ApiController::class, 'cc'])->name('cc');
+
+
+Route::get('/course-list', [ApiController::class, 'course_list'])->name('course_list');
+Route::get('/schedule-list', [ApiController::class, 'schedule_list'])->name('schedule_list');
+Route::get('/exam-list', [ApiController::class, 'exam_list'])->name('exam_list');
