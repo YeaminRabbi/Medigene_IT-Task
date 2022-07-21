@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Contents;
-class Paragraphs extends Model
+use App\Models\Content;
+class Exam extends Model
 {
     use HasFactory;
 
-  
-    protected $fillable = [
-        'content'
-    ];
-
-
     protected $guarded = [];
+    public function contents()
+    {
+        return $this->morphMany(Content::class, 'contentable');
+    }
+
     public function content()
     {
-        return $this->morphMany(Contents::class, 'contentable');
+        return $this->morphOne(Content::class, 'contentable');
+
     }
 }

@@ -3,44 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contents;
+use App\Models\Content;
 use App\Models\Courses;
-use App\Models\Exams;
-use App\Models\Paragraphs;
-use App\Models\Videos;
+use App\Models\Exam;
+use App\Models\Paragraph;
+use App\Models\Video;
 use App\Models\User;
 
+use App\Models\Comment;
+use App\Models\Post;
+use App\Models\Review;
+
 use Auth;
-
-
-
-
-
+use Laravel\Ui\Presets\React;
+use Illuminate\Support\Str;
+use Faker\Generator;
+use Faker\Factory as Faker;
 class ApiController extends Controller
 {
    function getSchedule()
    {
-        return Contents::all();
+        return Content::all();
    }
 
    function getVideo()
    {
         return response([
-            'data' => Videos::all() 
+            'data' => Video::all() 
         ]);
    }
 
    function getParagraph()
    {
         return response([
-            'data' => Paragraphs::all() 
+            'data' => Paragraph::all() 
         ]);
    }
 
    function getExam()
    {
         return response([
-            'data' => Exams::all() 
+            'data' => Exam::all() 
         ]);
    }
 
@@ -56,9 +59,69 @@ class ApiController extends Controller
      // return response([
      //      "msg" => "Success!"
      // ]);
-
+    
      return response([
-          'data' => Contents::get()
+          'data' => Content::content()
      ]);
    }
+
+
+   function test()
+   {
+      
+     $collection = Content::query()
+          ->where("contentable_type", Exam::class)
+          ->with('contentable')
+          ->get();
+   
+
+     return response([
+          'data'=> $collection
+     ]);
+
+   }
+
+   function cc()
+   {
+
+     // $post = new Post();
+     // $post->title = " 2 example Post";
+     // $post->save();
+     // $post->comments()->create([
+     //      'body' => '2 This is my first comment test' 
+     // ]);
+
+     
+     // $review = new Review();
+     // $review->title = "3 tipical review";
+     // $review->save();
+     
+     // $review->comments()->create([
+     //      'body' => '3 This comment is for review' 
+     // ]);
+
+     $faker = Faker::create();
+     for($i=1;$i<50;$i++)
+     {
+          $CreatedObj = new Exam();
+          $CreatedObj->type = $faker->randomElement(['MCQ', 'Written', 'Viva']);
+          $CreatedObj->title = Str::ra;
+          $CreatedObj->save();
+          
+          $CreatedObj->contents()->create([
+               'body' => 'Paragraph' 
+          ]);
+
+     }
+     
+
+
+     return response([
+          'msg' => "success"
+     ]);
+
+
+   }
 }
+
+

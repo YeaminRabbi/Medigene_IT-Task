@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExamsTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateExamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('exams', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('question');
+            $table->text('body');
+            $table->morphs('commentable');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateExamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('comments');
     }
 }

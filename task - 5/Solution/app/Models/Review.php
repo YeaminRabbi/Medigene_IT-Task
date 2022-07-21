@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Contents;
-class Videos extends Model
+use App\Models\Comment;
+
+class Review extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function content()
+    public function comments()
     {
-        return $this->morphMany(Contents::class, 'contentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }
-

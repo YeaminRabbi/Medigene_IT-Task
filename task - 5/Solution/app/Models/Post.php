@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Contents;
-class Exams extends Model
+use App\Models\Comment;
+class Post extends Model
 {
     use HasFactory;
-
     protected $guarded = [];
-    public function content()
+    public function comments()
     {
-        return $this->morphMany(Contents::class, 'contentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Contents extends Model
+class Comment extends Model
 {
     use HasFactory;
-
-    public function contentable()
+    protected $guarded = [];
+    public function commentable()
     {
         return $this->morphTo();
     }

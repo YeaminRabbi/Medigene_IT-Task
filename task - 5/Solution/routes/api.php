@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,7 @@ Route::get('/video', [ApiController::class, 'getVideo'])->name('video');
 Route::get('/paragraph', [ApiController::class, 'getParagraph'])->name('paragraph');
 Route::get('/exam', [ApiController::class, 'getExam'])->name('exam');
 Route::get('/content', [ApiController::class, 'getContent'])->name('content');
+
+
+Route::get('/test', [ApiController::class, 'test'])->name('test');
+Route::get('/cc', [ApiController::class, 'cc'])->name('cc');
