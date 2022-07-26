@@ -18,6 +18,7 @@ use App\Models\Review;
 use Auth;
 use Laravel\Ui\Presets\React;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Faker\Generator;
 use Faker\Factory as Faker;
 class ApiController extends Controller
@@ -50,19 +51,8 @@ class ApiController extends Controller
 
    function getContent()
    {
-
-     // $video = new Videos();
-     // $video->source = 'asdfasdfasdfasdf';
-     // $video->save();
-
-     // $video->content()->create();
-
-     // return response([
-     //      "msg" => "Success!"
-     // ]);
-    
      return response([
-          'data' => Content::content()
+          'data' => Content::all()
      ]);
    }
 
