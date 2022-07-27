@@ -15,14 +15,14 @@ class CreateMadrasasTable extends Migration
     {
         Schema::create('madrasas', function (Blueprint $table) {
             $table->id();
-            $table->text('division');
-            $table->text('district');
-            $table->text('thana');
-            $table->text('eiin');
-            $table->text('name');
-            $table->text('post_office');
-            $table->text('address');
-            $table->text('mobile');
+            $table->text('division')->nullable();
+            $table->text('district')->nullable();
+            $table->text('thana')->nullable();
+            $table->text('eiin')->nullable();
+            $table->text('name')->nullable();
+            $table->text('post_office')->nullable();
+            $table->text('address')->nullable();
+            $table->text('mobile')->nullable();
             $table->timestamps();
         });
     }

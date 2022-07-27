@@ -20,3 +20,5 @@ Route::get('/', function () {
 
 
 Route::post('import', [MadrasaController::class, 'import'])->name('madrasaUpload');
+
+Route::get('export/', [MadrasaController::class, 'export'])->name('madrasaExport');
